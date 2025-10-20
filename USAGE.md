@@ -1,5 +1,21 @@
 # Repository Usage Guide
 
+## Table of Contents
+
+1. [Philosophy](#philosophy)
+2. [Development Environment](#development-environment)
+3. [Node + Playwright Sandbox](#node--playwright-sandbox)
+4. [Skills Authoring Workflow](#skills-authoring-workflow)
+5. [Versioning & Changelog](#versioning--changelog)
+6. [Testing Strategy](#testing-strategy)
+7. [Adding Dependencies](#adding-dependencies)
+8. [Skill Validation Script](#skill-validation-script)
+9. [Security & Compliance](#security--compliance)
+10. [Future Enhancements](#future-enhancements)
+11. [Quick Commands](#quick-commands-inside-dev-container)
+12. [Release Tagging Workflow](#release-tagging-workflow)
+13. [Contributing](#contributing)
+
 This document complements the original `README.md` (kept unchanged as a reference showcase) by describing how we actively use and develop within this repository.
 
 ## Philosophy
@@ -13,6 +29,7 @@ This document complements the original `README.md` (kept unchanged as a referenc
 ### Dev Container
 
 We use a VS Code Dev Container (`.devcontainer/`) to isolate toolchains:
+
 - Python 3.11 for scripting (GIF generation, MCP evaluation, future doc tooling).
 - Node 20 for web/app artifact workflows and Playwright testing.
 - System packages: imaging libs (libjpeg, libpng, libwebp, freetype, tiff), `ffmpeg`, `pandoc`, and Playwright browser deps.
@@ -76,6 +93,35 @@ We follow Semantic Versioning for repository releases (tagged states) and mainta
 - Prefer adding new Python dependencies to a dedicated `requirements.txt` within the skill directory.
 - For cross-skill tooling, evaluate if it truly belongs globally; if not, document usage in that skill's README or in `USAGE.md`.
 - Keep versions pinned or use upper bounds if stability matters.
+- If multiple skills share exact versions, consider a consolidation script that composes a temporary combined constraints file (avoid a monolithic root requirements unless truly shared runtime emerges).
+- Node dependencies live only in `node-sandbox/` for now; avoid adding a root-level `package.json` to keep skill folders lightweight.
+
+## Skill Validation Script
+
+The repository includes `scripts/verify_skills.py` which enforces required YAML frontmatter fields in each `SKILL.md`.
+
+Run it inside the dev container:
+
+```bash
+python scripts/verify_skills.py
+```
+Expected output example (success):
+
+```text
+✔ skill brand-guidelines: frontmatter ok
+✔ skill internal-comms: frontmatter ok
+```
+Example failure message:
+
+```text
+✘ skill example-skill: missing required field 'description'
+```
+Required fields (current rule set):
+
+- name (lowercase, hyphenated)
+- description (clear when to use)
+
+Add new validation rules by editing the script (e.g., enforce a `Guidelines` heading). Update `CHANGELOG.md` under Unreleased when rules change.
 
 ## Security & Compliance
 
@@ -88,6 +134,8 @@ We follow Semantic Versioning for repository releases (tagged states) and mainta
 - Introduce automated linting (Markdown, Python, TypeScript) via a pre-commit or CI workflow.
 - Add reproducible lock files (`requirements.lock`, `package-lock.json` or `pnpm-lock.yaml`) once dependency churn slows.
 - Provide script for validating all `SKILL.md` frontmatter correctness.
+- Add CI job invoking `scripts/verify_skills.py` + markdown lint on pull requests.
+- Introduce a lightweight schema check ensuring no prohibited frontmatter keys (e.g., secrets, tokens).
 
 ## Quick Commands (Inside Dev Container)
 
@@ -100,7 +148,26 @@ npx --prefix node-sandbox playwright install --with-deps
 
 # Run GIF builder example (pseudo)
 python slack-gif-creator/core/gif_builder.py
+
+# If Playwright test command fails with "playwright: command not found", run post-create steps manually:
+bash .devcontainer/scripts/postCreate.sh
 ```
+
+## Release Tagging Workflow
+
+1. Accumulate changes under **Unreleased** in `CHANGELOG.md`.
+2. Before tagging, replace placeholders with concrete bullet items.
+3. Create tag (example):
+
+```bash
+git tag -a 0.3.0 -m "Release 0.3.0"
+git push origin 0.3.0
+```
+4. Update link references at bottom of `CHANGELOG.md`:
+   - `[Unreleased]:` compares new tag to `HEAD`.
+   - Add a new `[0.3.0]` line comparing previous tag to new tag.
+5. Open PR (if needed) to merge changes to `main`.
+6. Announce changes or update internal docs if skill behaviors changed.
 
 ## Contributing
 
