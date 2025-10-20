@@ -46,10 +46,3 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Node & Python installed via devcontainer features (see devcontainer.json)
 
 WORKDIR /workspace
-
-# Create non-root user matching devcontainer defaults for better host file permission mapping (idempotent)
-RUN if ! id -u vscode >/dev/null 2>&1; then \
-            useradd -m -s /bin/bash vscode; \
-        fi && chown -R vscode:vscode /workspace
-
-USER vscode
