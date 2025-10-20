@@ -12,6 +12,9 @@
     }
   },
   "postCreateCommand": "bash .devcontainer/scripts/postCreate.sh",
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "overrideCommand": false,
   "customizations": {
     "vscode": {
       "extensions": [
