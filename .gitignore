@@ -1,2 +1,22 @@
 .DS_Store
+# Dependencies
+**/node_modules/
 
+# Playwright artefacts
+playwright-report/
+test-results/
+blob-report/
+
+# Build / coverage
+dist/
+build/
+coverage/
+.out/
+.cache/
+.tmp/
+temp/
+tmp/
+
+# OS/Editor
+.DS_Store
+.vscode/
