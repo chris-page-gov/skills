@@ -5,7 +5,7 @@ This repo's `.git` directory can be locked down by host filesystem attributes on
 ## Quick git inside the devcontainer
 - Build image once: `docker build -t skills-dev -f .devcontainer/Dockerfile .`
 - Open a shell inside the image with the repo mounted: `docker run --rm -it -v "$PWD:/workspace" -w /workspace skills-dev bash`
-- Set git identity (if not already configured): `git config user.name "Chris Page"` and `git config user.email "chrispage@warwickshire.gov.uk"`
+- Set git identity (if not already configured): `git config user.name "Chris Page"` and `git config user.email "chris.page@bduk.gov.uk"`
 - Perform fetch/rebase normally inside the container:  
   `git fetch upstream`  
   `git checkout crpage`  
