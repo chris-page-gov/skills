@@ -6,18 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ## [Unreleased]
 
-### Added – 0.2.0
+### Added
+- `agents.md` with a devcontainer-first git workflow to avoid macOS `.git` permission issues and document recovery steps.
 
-- (placeholder) Future additions go here.
-- Skill verification script `scripts/verify_skills.py` to enforce required frontmatter fields.
+### Changed
+- Devcontainer image and scripts: idempotent creation of the `vscode` user, removal of redundant user/UID tweaks, and safer audio dependency fallback (`libasound2t64`).
+- USAGE guidance expanded with TOC, validation script section, dependency guidance, and release workflow notes.
 
-### Changed – 0.2.0
-
-- (placeholder)
-
-### Fixed – 0.2.0
-
-- (placeholder)
+### Fixed
+- Changelog formatting aligned to Keep a Changelog sections.
 
 ---
 

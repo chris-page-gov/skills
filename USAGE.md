@@ -48,6 +48,14 @@ The script `.devcontainer/scripts/postCreate.sh` automatically:
 - Ensures consistent versions across contributors.
 - Smooth path to add heavier deps (e.g., PDF rendering libs) without polluting macOS.
 
+### Git Workflow & Permissions
+
+- Run git operations inside the devcontainer to avoid macOS `.git` extended-attribute permission errors on the host:
+  `docker run --rm -it -v "$PWD:/workspace" -w /workspace skills-dev bash`
+- Configure identity once inside:  
+  `git config user.name "Chris Page"` and `git config user.email "chris.page@bduk.gov.uk"`
+- Prefer SSH or a PAT for pushes from the container; see `agents.md` for the full workflow and recovery steps.
+
 ## Node + Playwright Sandbox
 
 `node-sandbox/` supplies a minimal scaffold:
