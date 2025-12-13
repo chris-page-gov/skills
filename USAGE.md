@@ -6,15 +6,16 @@
 2. [Development Environment](#development-environment)
 3. [Node + Playwright Sandbox](#node--playwright-sandbox)
 4. [Skills Authoring Workflow](#skills-authoring-workflow)
-5. [Versioning & Changelog](#versioning--changelog)
-6. [Testing Strategy](#testing-strategy)
-7. [Adding Dependencies](#adding-dependencies)
-8. [Skill Validation Script](#skill-validation-script)
-9. [Security & Compliance](#security--compliance)
-10. [Future Enhancements](#future-enhancements)
-11. [Quick Commands](#quick-commands-inside-dev-container)
-12. [Release Tagging Workflow](#release-tagging-workflow)
-13. [Contributing](#contributing)
+5. [Skill Examples Catalog](#skill-examples-catalog)
+6. [Versioning & Changelog](#versioning--changelog)
+7. [Testing Strategy](#testing-strategy)
+8. [Adding Dependencies](#adding-dependencies)
+9. [Skill Validation Script](#skill-validation-script)
+10. [Security & Compliance](#security--compliance)
+11. [Future Enhancements](#future-enhancements)
+12. [Quick Commands](#quick-commands-inside-dev-container)
+13. [Release Tagging Workflow](#release-tagging-workflow)
+14. [Contributing](#contributing)
 
 This document complements the original `README.md` (kept unchanged as a reference showcase) by describing how we actively use and develop within this repository.
 
@@ -83,6 +84,11 @@ Use this sandbox to prototype automation flows that can inform instructions in t
 3. Provide examples that reflect real inputs/outputs.
 4. Include guardrails (what NOT to do) to reduce hallucinations.
 5. For executable helpers (scripts, templates), keep them small, documented, and optional.
+
+## Skill Examples Catalog
+
+The repository maintains an up-to-date catalog of example assets for every skill in [docs/skill_examples.md](docs/skill_examples.md). Consult it before diving into a task to see which templates, sample artifacts, or walkthrough markdown accompany the skill you need.
+
 
 ## Versioning & Changelog
 

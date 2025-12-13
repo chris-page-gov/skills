@@ -8,10 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Added
 - `agents.md` with a devcontainer-first git workflow to avoid macOS `.git` permission issues and document recovery steps.
+- `docs/skill_examples.md` cataloguing example assets for every skill.
 
 ### Changed
 - Devcontainer image and scripts: idempotent creation of the `vscode` user, removal of redundant user/UID tweaks, and safer audio dependency fallback (`libasound2t64`).
 - USAGE guidance expanded with TOC, validation script section, dependency guidance, and release workflow notes.
+- USAGE guide now links to the central skill examples catalog.
 
 ### Fixed
 - Changelog formatting aligned to Keep a Changelog sections.
